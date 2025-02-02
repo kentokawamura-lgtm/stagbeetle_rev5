@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block title %}成虫管理リスト{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-{{ item.gender }}" role="alert">
+            <p>名前：{{ object.name }}</p>
+            <p>種親サイズ：{{ object.size_ad }}</p>
+            <p>種親羽化日：{{ object.ad_date }}</p>
+            <p>性別：{{ object.get_gender_display }}</p>
+            <p>累代：{{ object.gener }}</p>
+            <p>種親サイズ：{{ object.size }}</p>
+            <p>種親羽化日：{{ object.ad_date }}</p>
+            <p>割り出し日：{{ object.date }}</p>
+            <p>１本目：{{ object.date_1 }}</p>
+            <p>２本目：{{ object.date_2 }}</p>
+            <p>３本目：{{ object.date_3 }}</p>
+            <p>４本目：{{ object.date_4 }}</p>
+            <p>１回目の体重：{{ object.weight_1 }}</p>
+            <p>２回目の体重：{{ object.weight_2 }}</p>
+            <p>３回目の体重：{{ object.weight_3 }}</p>
+            <p>４回目の体重：{{ object.weight_4 }}</p>
+            <p>メモ：{{ object.memo }}</p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+
+
+
+{% endblock %}
