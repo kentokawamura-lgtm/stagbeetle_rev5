@@ -20,16 +20,27 @@
  </div>
 </div>
 
- <section id="projects">
+<section id="projects">
   <div class="container-fluid">
     <div class="row">
-
       <div class="col-md-8 mx-auto text-center">
         <h6 class="text-primary">アプリケーション一覧</h6>
         <h1>最近開発したアプリ！</h1>
         <p></p>
       </div>
-
+    </div>
+    <div class="row g-3">
+      <div class="col-lg-4 col-sm-6">
+      <div class="project">
+        <a href="{% url 'app:mycalendar' %}"><img src="{% static '/img/calendar-925109_1280.jpg' %}" alt=""></a>
+        <div class="overlay">
+          <div>
+            <h4 class="text-white">飼育予定管理アプリ</h4>
+            <h6 class="text-white"><a href="{% url 'app:mycalendar' %}">毎日の予定を管理するためのアプリ</a></h6>
+          </div>
+        </div>
+      </div>
+      </div>
       <div class="col-lg-4 col-sm-6">
         <div class="project">
           <img src="{% static '/img/photo-1591840061552-33444ef3b0b3.avif' %}" alt="">
@@ -43,7 +54,7 @@
         </div>
         <div class="col-lg-4 col-sm-6">
           <div class="project">
-            <img src="{% static '/img/1000001983.jpg' %}" alt="">
+            <img src="{% static '/img/eric-rothermel-FoKO4DpXamQ-unsplash.jpg' %}" alt="">
             <div class="overlay">
               <div>
                 <h4 class="text-white">幼虫管理アプリ</h4>
@@ -52,19 +63,8 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="project">
-            <img src="{% static '/img/1000001983.jpg' %}" alt="">
-            <div class="overlay">
-              <div>
-                <h4 class="text-white">予定管理アプリ</h4>
-                <h6 class="text-white"><a href="{% url 'app:mycalendar' %}">クワガタ飼育の予定を管理するアプリ</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
   </div>
-</div>
+
 </section>
 
 
