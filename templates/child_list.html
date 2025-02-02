@@ -43,8 +43,8 @@
             <a href="{% url 'child:child_detail' item.pk %}" class="btn btn-info " role="button" aria-disabled="true">詳細</a>
 
             {% for s in obj2 %}
-            {% if item.name is s.name and item.size is s.size_ad and item.date is s.ad_date %}
-            <a href="{% url 'adult:adult_detail' s.pk %}" class="btn btn-info " role="button" aria-disabled="true">詳細</a>
+            {% if item.name == s.name and item.size == s.size_ad and item.date == s.ad_date %}
+            <a href="{% url 'adult:adult_detail' s.pk %}" class="btn btn-info " role="button" aria-disabled="true">種親情報</a>
             {% endif %}
             {% endfor %}
           </div>
