@@ -1,1 +1,1 @@
-web: gunicorn djangoCalendarApp.wsgi --log-file -
+web: gunicorn stagbeetle_rev4.wsgi --log-file -
