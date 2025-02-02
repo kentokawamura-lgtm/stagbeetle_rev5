@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'adult',
     'homeapp',
     'child',
+    'app',
 ]
 
 MIDDLEWARE = [

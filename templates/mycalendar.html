@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block title %}{{ user }}さんの予定確認アプリ{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'app:mycalendar' month_previous.year month_previous.month month_previous.day %}" class="link-underline-primary">前月</a>
+{{ month_current | date:"Y年m月" }}
+<a href="{% url 'app:mycalendar' month_next.year month_next.month month_next.day %}" >次月</a>
+
+<table class="table" style="table-layout: fixed;">
+    <thead>
+        <tr>
+            {% for w in week_names %}
+                <th>{{ w }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for week in month_days %}
+        <tr>
+            {% for day in week %}
+                {% if now == day %}
+                    <td class="table-success">
+                {% else %}
+                    <td>
+                {% endif %}
+
+                <a href="{% url 'app:mycalendar' day.year day.month day.day %}" class="text-primary">{{ day.day }}</a>
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+        <hr>
+            <form action="" method="POST">
+                {{ form.non_field_errors }}               
+                {% for field in form %}
+                    <div class="form-group row">
+                        <label for="{{ field.id_for_label }}"
+                               class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
+                        <div class="col-sm-8">
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% csrf_token %}
+                <div class="col-md-12 d-grid">
+                    <button class="btn btn-primary">予定追加！</button>
+                </div>
+            </form>
+    </div>
+    <div class="col-md-9">
+        <a href="{% url 'app:mycalendar' week_previous.year week_previous.month  week_previous.day %}">前週</a>
+            {{ week_first | date:"Y年m月d日" }}〜{{ week_last | date:"Y年m月d日" }}
+        <a href="{% url 'app:mycalendar' week_next.year week_next.month  week_next.day %}">次週</a>
+        <hr>
+    <table class="table" style="table-layout: fixed;">
+        <tbody>
+            <tr>
+            {% for day in week_days %}
+                {% if now == day %}
+                    <td class="table-success">
+                {% else %}
+                    <td>
+                {% endif %}
+                {% if week_first.month != day.month %}
+                    {{ day | date:"m/d" }}
+                {% else %}
+                    {{ day.day }}
+                {% endif %}
+            </td>
+            {% endfor %}
+            </tr>
+            <tr>
+             
+            {% for schedules in week_day_schedules.values %}
+            <td>
+                {% for s in schedules %}
+                {% if s.user == request.user %}
+                    {{ s.start_time }} ～ {{ s.end_time }}
+                    <br>
+                    <a href="{% url 'app:detail' s.pk %}" class="text-primary">{{ s.summary | linebreaks }}</a>
+                    <br>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            {% endfor %}
+           
+            </tr>
+        </tbody>
+
+</table>
+
+<div class="row mb-9 ">
+    <div class="col-md-8 mx-auto text-center">
+      <h1>1週間のタスク一覧</h1>
+      <p>
+        1週間にすべきタスクの一覧を以下に表示します。削除または編集する場合は、それぞれのカードをクリックしましょう。
+      </p>
+    </div>
+    <div class="row g-4">
+      
+    {% for schedules in week_day_schedules.values %}
+
+    {% for s in schedules %}
+    {% if s.user == request.user %}
+      <div class="col-md-4">
+        <div class="blog-card card-effect">
+          <img src="" alt="">
+          <h3 class="mb-0 mt-4 bg-{{ s.priority }} text-white">{{ s.summary | linebreaks }}</h3>
+          <p class="bg-{{ s.priority }}"><a href="{% url 'app:detail' s.pk %}">{{ s.description | linebreaks }}</a></p>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      {% endfor %}
+
+    </div>
+
+
+</div>
+
+
+        
+  
+
+    {% endblock %}
+
+    {% block extrajs %}
+    <!--
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+    <script>
+        $(function () {
+            // timedropper
+            $("#id_start_time").timeDropper({
+                format: "H:mm",
+                setCurrentTime: false,
+            });
+            $("#id_end_time").timeDropper({
+                format: "H:mm",
+                setCurrentTime: false,
+            });
+        });
+    </script>
+    -->
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+<script>
+  $(function () {
+      // timedropper
+      $("#id_start_time").timeDropper({
+          format: "H:mm",
+          setCurrentTime: false,
+      });
+      $("#id_end_time").timeDropper({
+          format: "H:mm",
+          setCurrentTime: false,
+      });
+  });
+</script>
+
+{% endblock %}
+

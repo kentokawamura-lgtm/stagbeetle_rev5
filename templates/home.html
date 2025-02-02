@@ -29,12 +29,12 @@
                 <li class="nav-item">
                   <a class="nav-link text-white" href="https://kuwakabu-hobby.com/">blog</a>
                 </li>
-                {% if user.is_authenticated %}
-                 <button class="btn btn-primary ms-3 text-white"><a href="{% url 'adult:logout' %}" class="text-white">logout</a></button>
-                {% else %}
-                <button class="btn btn-primary ms-3"><a href="{% url 'adult:signup' %}" class="text-white">sing up</a></button>
-                <button class="btn btn-primary ms-3"><a href="{% url 'adult:login' %}" class="text-white">login</a></button>
-                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="https://kuwakabu-hobby.com/%e2%9c%93%e3%83%97%e3%83%ad%e3%83%95%e3%82%a3%e3%83%bc%e3%83%ab/">プロフィール</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="https://kuwakabu-hobby.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/">お問い合わせ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -47,8 +47,12 @@
               <p class="text-white my-3">
                 クワガタ飼育アプリの部屋へようこそ！このページでは、クワガタ飼育の情報を一元管理するためのwebアプリケーションを提供しています。是非、一緒にアプリを使いこなして、クワガタ飼育を電子化しましょう！私は、サラリーマンの傍ら、ブログ・webアプリ開発をしております。気になる方は、プロぎーるをご覧ください。また、アプリに関して気になる点があれば、お問い合わせフォームからお問い合わせください！
               </p>
-              <a href="https://kuwakabu-hobby.com/%e2%9c%93%e3%83%97%e3%83%ad%e3%83%95%e3%82%a3%e3%83%bc%e3%83%ab/" class="btn btn-primary me-2">プロフィール</a>
-              <a href="https://kuwakabu-hobby.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/" class="btn btn-outline-light text-white">contact</a>
+              {% if user.is_authenticated %}
+              <button class="btn btn-primary ms-3 text-white"><a href="{% url 'adult:logout' %}" class="text-white">logout</a></button>
+             {% else %}
+             <button class="btn btn-primary ms-3"><a href="{% url 'adult:signup' %}" class="text-white">sing up</a></button>
+             <button class="btn btn-primary ms-3"><a href="{% url 'adult:login' %}" class="text-white">login</a></button>
+             {% endif %}
           </div>
           </div>
           
@@ -56,38 +60,7 @@
       </div>
 
 <!--project section-->
-<section id="projects">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8 mx-auto text-center">
-        <h6 class="text-primary">アプリケーション一覧</h6>
-        <h1>最近開発したアプリ！</h1>
-        <p></p>
-      </div>
-    </div>
-    
-      <div class="col-lg-4 col-sm-6">
-        <div class="project">
-          <img src="{% static '/img/photo-1591840061552-33444ef3b0b3.avif' %}" alt="">
-          <div class="overlay">
-            <div>
-              <h4 class="text-white">成虫管理アプリ</h4>
-              <h6 class="text-white"><a href="{% url 'adult:list' %}">成虫の情報を一元管理するためのアプリ</a></h6>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="project">
-            <img src="{% static '/img/1000001983.jpg' %}" alt="">
-            <div class="overlay">
-              <div>
-                <h4 class="text-white">幼虫管理アプリ</h4>
-                <h6 class="text-white"><a href="{% url 'child:child_list' %}">幼虫の情報を一元管理するためのアプリ</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
 
 
