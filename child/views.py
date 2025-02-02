@@ -21,7 +21,7 @@ def Childlist(request):
         'user':user, 'obj':obj
     }
 #種親情報を取得
-    taneoya = user.adult.all(),filter('name','size_ad')
+    taneoya = user.adult.all().filter('name','size_ad')
 
 
     return render(request, 'child_list.html',context)
@@ -79,12 +79,12 @@ def login_func(request):
             login(request,hoge)
             return redirect('adult:applist')
         else:
-            return redirect('adult:login')
-    return render(request,'login.html')
+            return redirect('child:child_login')
+    return render(request,'child_login.html')
 
 def logout_func(request):
     logout(request)
-    return redirect('adult:login') 
+    return redirect('child:child_login') 
 
 
 def search(request):
