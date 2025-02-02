@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-danger" role="button" aria-disabled="true" value="削除する">
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block title %}成虫管理リスト{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-{{ item.gender }}" role="alert">
+        <p><img src="{{ object.image.url }}" alt="" width="300" /></p>
+            <p>{{ object.name }}</p>
+            <p>{{ object.get_gender_display }}</p>
+            <p>{{ object.size }}</p>
+            <p>{{ object.gener }}</p>
+            <p>{{ object.date }}</p>
+            <p>{{ object.memo }}</p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+
+
+
+{% endblock %}

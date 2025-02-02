@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+アプリ一覧
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<div class="hero vh-100 d-flex align-items-center" id="home">
+  <div class="container" mt-3>
+   <div class="row">
+     <div class="col-lg7 mx-auto text-center">
+       <h1 class="display-4 text-white">アプリケーション一覧</h1>
+       <p class="text-white my-3">
+         アプリケーションを使いこなして、クワガタ飼育データを一元管理しよう！
+       </p>
+   </div>
+   </div>
+   
+ </div>
+</div>
+
+ <section id="projects">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 mx-auto text-center">
+        <h6 class="text-primary">アプリケーション一覧</h6>
+        <h1>最近開発したアプリ！</h1>
+        <p></p>
+      </div>
+    </div>
+      <div class="col-lg-4 col-sm-6">
+        <div class="project">
+          <img src="{% static '/img/photo-1591840061552-33444ef3b0b3.avif' %}" alt="">
+          <div class="overlay">
+            <div>
+              <h4 class="text-white">成虫管理アプリ</h4>
+              <h6 class="text-white"><a href="{% url 'adult:list' %}">成虫の情報を一元管理するためのアプリ</a></h6>
+            </div>
+          </div>
+        </div>
+        </div>
+  </div>
+
+</section>
+
+
+{% endblock %}

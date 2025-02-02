@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary " role="button" aria-disabled="true" value="編集する">
+</form>
+{% endblock %}
+
+{% block extrajs %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+    <script>
+        $(function () {
+            // timedropper
+            $("#id_start_time").timeDropper({
+                format: "H:mm",
+                setCurrentTime: false,
+            });
+            $("#id_end_time").timeDropper({
+                format: "H:mm",
+                setCurrentTime: false,
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+        $(function(){
+          $('#id_date').datepicker({
+            dateFormat: "yy-mm-dd"
+          });
+        });
+      </script>
+
+    {% endblock %}
