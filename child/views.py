@@ -8,6 +8,7 @@ from django.contrib.auth import logout,authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from adult.models import Adultmodel
 
 
 
@@ -17,11 +18,12 @@ from django.contrib.auth.decorators import login_required
 def Childlist(request):
     user = request.user
     obj = user.child.all()
+    obj2 = user.adult.all()
+    print(obj2)
     context = {
-        'user':user, 'obj':obj
+        'user':user, 'obj':obj, 'obj2':obj2
     }
 #種親情報を取得
-    taneoya = user.adult.all().filter('name','size_ad')
 
 
     return render(request, 'child_list.html',context)

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from adult.models import Adultmodel
 
 # Create your models here.
 GENDER=(('secondary','-'),('danger','♀'),('info','♂'))

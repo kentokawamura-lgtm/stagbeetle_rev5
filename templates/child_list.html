@@ -42,8 +42,11 @@
             <a href="{% url 'child:child_delete' item.pk %}" class="btn btn-primary " role="button" aria-disabled="true">削除</a>
             <a href="{% url 'child:child_detail' item.pk %}" class="btn btn-info " role="button" aria-disabled="true">詳細</a>
 
-            <a href="{% url 'adult:adult_detail' item.pk %}" class="btn btn-info " role="button" aria-disabled="true">種親情報</a>
-
+            {% for s in obj2 %}
+            {% if item.name is s.name and item.size is s.size_ad and item.date is s.ad_date %}
+            <a href="{% url 'adult:adult_detail' s.pk %}" class="btn btn-info " role="button" aria-disabled="true">詳細</a>
+            {% endif %}
+            {% endfor %}
           </div>
           
         </div>
