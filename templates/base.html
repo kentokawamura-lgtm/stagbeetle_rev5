@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{% static 'style.css' %}">
       </head>
       <body>
+       
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
          <nav class="navbar navbar-expand-lg bg-dark py-4">
           <div class="container">
@@ -28,17 +29,25 @@
                 <li class="nav-item">
                   <a class="nav-link text-white" href="https://kuwakabu-hobby.com/">blog</a>
                 </li>
-
-                {% if user.is_authenticated %}
-                 <button class="btn btn-primary ms-3 text-white"><a href="{% url 'adult:logout' %}" class="text-white">logout</a></button>
-                {% else %}
-                <button class="btn btn-primary ms-3"><a href="{% url 'adult:signup' %}" class="text-white">sing up</a></button>
-                <button class="btn btn-primary ms-3"><a href="{% url 'adult:login' %}" class="text-white">login</a></button>
-                {% endif %}
+                {% block nav %}
+                
+                      {% endblock %}
+                    {% if user.is_authenticated %}
+                      <button class="btn btn-primary ms-3 text-white"><a href="{% url 'kakeibo:logout' %}" class="text-white">logout</a></button>
+                     {% else %}
+                     <button class="btn btn-primary ms-3"><a href="{% url 'kakeibo:signup' %}" class="text-white">sing up</a></button>
+                     <button class="btn btn-primary ms-3"><a href="{% url 'kakeibo:login' %}" class="text-white">login</a></button>
+                     {% endif %}
+                    </ul>
+                  </div>
+                </div>
+                
               </ul>
             </div>
           </div>
+          
         </nav>
+        
         <section class="welcome">
       </section>
             <h1>{% block title %}{% endblock %} </h1>

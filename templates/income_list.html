@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load kakeibo %}
+{% block nav %}
+                <div class="container">
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'kakeibo:payment_list'%}">支出</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'kakeibo:income_list'%}">
+                          収入
+                        </a>
+                      </li>
+              
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'kakeibo:monthly_balance' now_year now_month%}">
+                          <i class="fas fa-chart-pie"></i>
+                          月間バランス
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'kakeibo:balance_transition' %}">
+                          <i class="fas fa-chart-line"></i>
+                          バランス推移
+                        </a>
+                      </li>
+                      {% endblock %}
+{% block content %}
+
+<button type="button" class="mb-2 btn btn-sm btn-rounded btn-dark">
+  <i class="fa fa-plus me-2"></i>
+  <span class="ls-widest text-white"><a href="{% url 'kakeibo:income_create' %}" class="text-white">New</a></span>
+</button>
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+{% include "income_search_form.html" %}
+
+<div class="mt-3"> Search Result : {{ page_obj.paginator.count|intcomma }}</div>
+
+{% include "pagination.html" %}
+{% include "income_table.html" %}
+
+{% include "item_create_modal.html" %}
+{% include "item_delete_modal.html" %}
+
+{% endblock %}
+{% block extrajs %}
+{% include "cdn_datepicker.html" %}
+<script src="{% static 'itemDeleteModal.js' %}"></script>
+<script src="{% static 'datepickerConfig.js' %}"></script>
+<script src="{% static 'incomeSearch.js' %}"></script>
+{% endblock %}

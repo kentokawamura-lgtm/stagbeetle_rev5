@@ -1,0 +1,20 @@
+{% load humanize %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-end" width="30%">カテゴリー
+      </th>
+      <th scope="col" class="text-end" width="30%">値段</th>
+      <th scope="col" class="text-end">割合</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in table_items %}
+    <tr>
+      <th class="text-end">{{ item.category }}</th>
+      <th class="text-end">{{ item.amount|intcomma }}</th>
+      <th class="text-end">{{ item.composition_ratio }}%</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
