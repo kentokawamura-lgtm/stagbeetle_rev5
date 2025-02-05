@@ -26,6 +26,4 @@ urlpatterns = [
     path('child/',include('child.urls')),
     path('sc/',include('app.urls')),
     path('',include('kakeibo.urls'))
-]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

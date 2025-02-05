@@ -14,7 +14,7 @@ class Adultmodel(models.Model):
     size = models.CharField('サイズ',max_length=100)
     date = models.DateField('羽化日')
     memo = models.TextField('メモ')
-    image = models.ImageField(upload_to='media',null=True,blank=True)
+    image = models.ImageField(upload_to='images/',null=True,blank=True)
     def __str__(self):
         return f"{self.name}{self.date}{self.size}"
 

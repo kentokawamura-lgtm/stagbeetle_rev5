@@ -127,9 +127,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/'static']
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR/"static"]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR,'static')
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 #AUTH_USER_MODEL = 'register.User'
@@ -149,7 +151,7 @@ MONTH_OF_BEGIN_TERM = 3
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEBUG = False
+DEBUG = True
 
 try:
     # 存在する場合、ローカルの設定読み込み
@@ -157,11 +159,10 @@ try:
 except ImportError:
     pass
 
-if not DEBUG:
+if  DEBUG:
     # Heroku settings
 
     # staticの設定
-    import os
     import django_heroku
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
