@@ -124,7 +124,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+LOGIN_URL = '/login/'  # ログインページのURLを明示的に指定
+LOGIN_REDIRECT_URL = '/home/'  # ログイン後のリダイレクト先
+LOGOUT_REDIRECT_URL = '/home/'  # ログアウト後のリダイレクト先
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
