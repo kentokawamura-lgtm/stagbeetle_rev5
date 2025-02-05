@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
 
 ROOT_URLCONF = 'stagbeetle_rev4.urls'
@@ -137,7 +138,16 @@ MEDIA_URL='/media/'
 #AUTH_USER_MODEL = 'register.User'
 # add
 NUMBER_GROUPING = 3
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if DEBUG:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+    AWS_S3_REGION_NAME = 'your-region'
+    AWS_ACCESS_KEY_ID = 'your-access-key'
+    AWS_SECRET_ACCESS_KEY = 'your-secret-key'
 # 家計簿のスタート年を定義
 # 年の絞り込み検索のスタートする年として使用されます。
 KAKEIBO_START_YEAR = 2025
@@ -151,7 +161,7 @@ MONTH_OF_BEGIN_TERM = 3
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEBUG = False
+DEBUG = True
 
 try:
     # 存在する場合、ローカルの設定読み込み
@@ -159,7 +169,7 @@ try:
 except ImportError:
     pass
 
-if  not DEBUG:
+if  DEBUG:
     # Heroku settings
 
     # staticの設定
