@@ -151,7 +151,7 @@ MONTH_OF_BEGIN_TERM = 3
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEBUG = True
+DEBUG = False
 
 try:
     # 存在する場合、ローカルの設定読み込み
@@ -159,7 +159,7 @@ try:
 except ImportError:
     pass
 
-if  DEBUG:
+if  not DEBUG:
     # Heroku settings
 
     # staticの設定
