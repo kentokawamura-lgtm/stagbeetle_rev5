@@ -278,3 +278,27 @@ form .form-control {
 .footer-top a:hover {
   color: #fff;
 }
+
+@media (max-width: 767px) {
+  .navbar {
+    background-color: #fff !important; /* ナビバーの背景色を白に設定 */
+    box-shadow: none; /* シャドウを削除してシンプルに */
+  }
+
+  .navbar .nav-link {
+    color: var(--dark) !important; /* ナビリンクのテキストカラーを濃い色に */
+  }
+
+  .navbar-toggler-icon {
+    background-color: var(--dark); /* ハンバーガーメニューアイコンの色を濃い色に */
+  }
+
+  .navbar-nav {
+    background-color: #fff; /* ナビゲーションリンクのエリア背景を白に */
+  }
+
+  .navbar .nav-link.active,
+  .navbar .nav-link:hover {
+    color: var(--primary) !important; /* ホバーやアクティブ時のリンク色をブランドカラーに */
+  }
+}

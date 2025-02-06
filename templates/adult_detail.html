@@ -5,22 +5,62 @@
 
 {% block content %}
 <div class="container">
-    <div class="alert alert-{{ item.gender }}" role="alert">
-        <p><img src="{{ object.image.url }}" alt="" width="300" /></p>
-            <p>{{ object.name }}</p>
-            <p>{{ object.get_gender_display }}</p>
-            <p>{{ object.size }}</p>
-            <p>{{ object.gener }}</p>
-            <p>{{ object.date }}</p>
-            <p>{{ object.memo }}</p>
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+        <h2 class="text-center mb-4 text-primary">成虫管理リスト</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">画像</label>
+            </div>
+            <div class="col-md-8">
+                <p><img src="{{ object.image.url }}" alt="" width="300" /></p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">名前</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.name }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">性別</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.get_gender_display }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">サイズ</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.size }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">累代</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.gener }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">日付</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.date }}</p>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">メモ</label>
+            </div>
+            <div class="col-md-8">
+                <p>{{ object.memo }}</p>
+            </div>
+        </div>
     </div>
 </div>
-
-
 {% endblock %}
 
 {% block extrajs %}
-
-
-
+<!-- Add any additional JS if needed -->
 {% endblock %}

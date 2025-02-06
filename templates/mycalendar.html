@@ -151,12 +151,17 @@
         });
     </script>
     -->
-    <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+<!-- jQueryを最初に読み込む -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- TimeDropperのCSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+
+<!-- TimeDropperのJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+
 <script>
-  $(function () {
-      // timedropper
+  $(function() {
       $("#id_start_time").timeDropper({
           format: "H:mm",
           setCurrentTime: false,

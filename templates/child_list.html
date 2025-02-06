@@ -4,19 +4,20 @@
 
 {% block content %}
 <div class="hero2 vh-100 d-flex align-items-center" id="home">
-    <div class="container" mt-3>
-     <div class="row">
-       <div class="col-lg7 mx-auto text-center">
-         <h1 class="display-4 text-white">幼虫管理リスト</h1>
-         <p class="text-white my-3">
-           {{ user }}さん！幼虫の種類を記録して、思い出に浸ろう！
-         </p>
-         <a href="{% url 'child:child_create' %}" class="btn btn-primary me-2">幼虫を記録！</a>
-     </div>
-     </div>
-     
-   </div>
- </div>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-center">
+                <h1 class="display-4 text-white">幼虫管理リスト</h1>
+                <p class="text-white my-3">
+                    {{ user }}さん！幼虫の種類を記録して、思い出に浸ろう！
+                </p>
+                <a href="{% url 'child:child_create' %}" class="btn btn-primary me-2">幼虫を記録！</a>
+                <!-- 成虫管理アプリへのリンクボタン -->
+                <a href="{% url 'adult:list' %}" class="btn btn-secondary">成虫管理アプリへ</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="blog" class="bg-light">
   <div class="container">
@@ -36,10 +37,10 @@
             <img src="{{ item.image.url }}" alt="">
             {% endif %}
             <h3 class="mb-0 mt-4"><a href="{% url 'child:child_detail' item.pk %}">{{ item.name }}</a></h3>
-            <p>{{ item.get_gender_display }}</p>
-            <p>{{ item.size }}</p>
-            <a href="{% url 'child:child_update' item.pk %}" class="btn btn-succes " role="button" aria-disabled="true">編集</a>
-            <a href="{% url 'child:child_delete' item.pk %}" class="btn btn-primary " role="button" aria-disabled="true">削除</a>
+            <p>管理番号：{{ item.number }}</p>
+            <p>割り出し日：{{ item.date }}</p>
+            <a href="{% url 'child:child_update' item.pk %}" class="btn btn-success " role="button" aria-disabled="true">編集</a>
+            <a href="{% url 'child:child_delete' item.pk %}" class="btn btn-danger " role="button" aria-disabled="true">削除</a>
             <a href="{% url 'child:child_detail' item.pk %}" class="btn btn-info " role="button" aria-disabled="true">詳細</a>
 
             {% for s in obj2 %}
@@ -48,21 +49,14 @@
             {% endif %}
             {% endfor %}
           </div>
-          
         </div>
         {% endfor %}
-      
-      </div>
 
+      </div>
     </div>
   </div>
 </section>
-
-
 {% endblock %}
 
 {% block extrajs %}
-
-
-
 {% endblock %}

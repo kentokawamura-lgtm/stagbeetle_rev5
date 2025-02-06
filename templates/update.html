@@ -1,38 +1,78 @@
 {% extends 'base.html' %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'style.css' %}">
-{% block content %}
-<form form action="" class="row g-3 justify-content-center" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" class="btn btn-primary " role="button" aria-disabled="true" value="編集する">
-</form>
-{% endblock %}
-{% block extrajs %}
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
-    <script>
-        $(function () {
-            // timedropper
-            $("#id_start_time").timeDropper({
-                format: "H:mm",
-                setCurrentTime: false,
-            });
-            $("#id_end_time").timeDropper({
-                format: "H:mm",
-                setCurrentTime: false,
-            });
-        });
-    </script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script>
-        $(function(){
-          $('#id_date').datepicker({
-            dateFormat: "yy-mm-dd"
-          });
-        });
-      </script>
 
-    {% endblock %}
+{% block title %}
+    編集フォーム | クワガタ飼育アプリ
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <!-- Card to wrap the form -->
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light" style="width: 100%; max-width: 600px;">
+        <h2 class="text-center mb-4 text-primary">予定編集フォーム</h2>
+
+        <!-- Form starts here -->
+        <form action="" class="row g-3" method="POST">
+            {% csrf_token %}
+            
+            <!-- Iterate over each form field -->
+            {% for field in form %}
+                <div class="col-12">
+                    <div class="row mb-3">
+                        <!-- Label for the field placed next to the input -->
+                        <div class="col-md-4">
+                            <label for="{{ field.id_for_label }}" class="col-form-label">{{ field.label }}</label>
+                        </div>
+                        <!-- Field input placed next to the label -->
+                        <div class="col-md-8">
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="text-muted d-block mt-1">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Submit button for the form -->
+            <div class="col-12 text-center mt-4">
+                <input type="submit" class="btn btn-primary btn-lg" role="button" aria-disabled="true" value="編集する">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<!-- jQuery and jQuery UI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<script>
+    $(function(){
+        // Datepicker setup for id_date
+        $('#id_date').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+
+<!-- TimeDropper -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+
+<script>
+    $(function() {
+        $("#id_start_time").timeDropper({
+            format: "H:mm",
+            setCurrentTime: false,
+        });
+        $("#id_end_time").timeDropper({
+            format: "H:mm",
+            setCurrentTime: false,
+        });
+    });
+</script>
+{% endblock %}

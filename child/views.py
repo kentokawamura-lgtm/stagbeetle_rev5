@@ -19,7 +19,6 @@ def Childlist(request):
     user = request.user
     obj = user.child.all()
     obj2 = user.adult.all()
-    print(obj2)
     context = {
         'user':user, 'obj':obj, 'obj2':obj2
     }
@@ -38,6 +37,15 @@ class Childcreate(CreateView):
         schedule.user = self.request.user
         schedule.save()
         return redirect('child:child_list')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # フォーム送信後、前回入力されたデータを保持する
+        if self.request.method == 'POST' and self.request.POST:
+            # POSTデータが送信されていれば、それをフォームに渡す
+            context['form'].initial = self.request.POST
+        
+        return context
 
 
 
@@ -50,14 +58,14 @@ def  Childdetail(request,pk):
 class Childupdate(UpdateView):
     template_name='child_update.html'
     model = Childmodel
-    fields = "__all__"
+    fields =  ('number', 'name','size_ad','ad_date', 'gender','gener','date','date_1','date_2','date_3','date_4','weight_1','weight_2','weight_3','weight_4','memo')
     success_url = reverse_lazy("child:child_list")
 
 
 class Childdelete(DeleteView):
     template_name='child_delete.html'
     model = Childmodel
-    fields = "__all__"
+    fields =  ('number', 'name','size_ad','ad_date', 'gender','gener','date','date_1','date_2','date_3','date_4','weight_1','weight_2','weight_3','weight_4','memo')
     success_url = reverse_lazy("child:child_list")
 
 def signup(request):
@@ -95,7 +103,7 @@ def search(request):
     query = request.GET.get('query1')
     if query:
         obj = user.child.all().filter(name__icontains=query)
-
+        obj = user.child.all().filter(date__icontains=query)
     else:
         obj = user.child.all()
     context = {

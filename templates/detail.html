@@ -1,36 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'style.css' %}">
-{% block content %}
-<h1>タスクの詳細表示画面</h1>
-<div class="p-3 mb-2 bg-light text-dark"><h2> 概要：{{ object.summary }}</h2></div>
-<div class="p-3 mb-2 bg-light text-dark"><h2> 日付：{{ object.date }}</h2></div>
-<div class="p-3 mb-2 bg-light text-dark"><h2> 時間：{{ object.start_time }} ～ {{ object.end_time }}</h2></div>
-<div class="p-3 mb-2 bg-light text-dark"><h3> 詳細：{{ object.description }}</h3></div>
-<div class="col-md-6 d-grid">
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-outline-primary" type="button"><a href="{% url 'app:update' object.pk %}" >編集</a></button>
-        <button class="btn btn-outline-danger" type="button"><a href="{% url 'app:delete' object.pk %}" class="text-danger">削除</a></button>
-      </div>
-  </div>
-  
-  
+
+{% block title %}
+
 {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+        <h1 class="text-center mb-4 text-primary">タスクの詳細表示画面</h1>
+
+        <!-- 概要 -->
+        <div class="p-3 mb-2 bg-light text-dark rounded-3">
+            <h2><strong>概要：</strong>{{ object.summary }}</h2>
+        </div>
+
+        <!-- 日付 -->
+        <div class="p-3 mb-2 bg-light text-dark rounded-3">
+            <h2><strong>日付：</strong>{{ object.date }}</h2>
+        </div>
+
+        <!-- 時間 -->
+        <div class="p-3 mb-2 bg-light text-dark rounded-3">
+            <h2><strong>時間：</strong>{{ object.start_time }} ～ {{ object.end_time }}</h2>
+        </div>
+
+        <!-- 詳細 -->
+        <div class="p-3 mb-2 bg-light text-dark rounded-3">
+            <h3><strong>詳細：</strong>{{ object.description }}</h3>
+        </div>
+
+        <!-- 編集・削除ボタン -->
+        <div class="text-center mt-4">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'app:update' object.pk %}" class="btn btn-outline-primary btn-lg">編集</a>
+                <a href="{% url 'app:delete' object.pk %}" class="btn btn-outline-danger btn-lg">削除</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block extrajs %}
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
-    <script>
-        $(function () {
-            // timedropper
-            $("#id_start_time").timeDropper({
-                format: "H:mm",
-                setCurrentTime: false,
-            });
-            $("#id_end_time").timeDropper({
-                format: "H:mm",
-                setCurrentTime: false,
-            });
+<!-- TimeDropperのCSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+<script>
+    $(function () {
+        // timedropper
+        $("#id_start_time").timeDropper({
+            format: "H:mm",
+            setCurrentTime: false,
         });
-    </script>
-    {% endblock %}
+        $("#id_end_time").timeDropper({
+            format: "H:mm",
+            setCurrentTime: false,
+        });
+    });
+</script>
+{% endblock %}
